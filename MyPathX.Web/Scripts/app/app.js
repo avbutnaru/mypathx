@@ -12,15 +12,15 @@ config(function ($routeProvider, $sceDelegateProvider) {
         topNav: 'scripts/app/views/top-nav.html',
         controller: 'GoalListController'
     });
-    $routeProvider.when('/builder/actions', {
-        templateUrl: 'scripts/app/views/actions.html',
+    $routeProvider.when('/builder/activities', {
+        templateUrl: 'scripts/app/views/activities.html',
         leftNav: 'scripts/app/views/left-nav-main.html',
         topNav: 'scripts/app/views/top-nav.html',
-        controller:'ActionsListController'
+        controller:'ActivitiesListController'
 });
     $routeProvider.when('/builder/goals/new', {
         templateUrl: 'scripts/app/views/goal.html',
-        leftNav: 'scripts/app/views/left-nav-actions.html',
+        leftNav: 'scripts/app/views/left-nav-activities.html',
         topNav: 'scripts/app/views/top-nav.html',
         controller: 'GoalDetailController',
         resolve: {
@@ -31,7 +31,7 @@ config(function ($routeProvider, $sceDelegateProvider) {
     });
     $routeProvider.when('/builder/goals/:id', {
         templateUrl: 'scripts/app/views/goal.html',
-        leftNav: 'scripts/app/views/left-nav-actions.html',
+        leftNav: 'scripts/app/views/left-nav-activities.html',
         controller: 'GoalDetailController',
         topNav: 'scripts/app/views/top-nav.html',
         resolve: {
@@ -44,14 +44,14 @@ config(function ($routeProvider, $sceDelegateProvider) {
             }],
         }
     });
-    $routeProvider.when('/builder/actions/new', {
-        templateUrl: 'scripts/app/views/action.html',
-        controller: 'ActionDetailController',
+    $routeProvider.when('/builder/activities/new', {
+        templateUrl: 'scripts/app/views/activity.html',
+        controller: 'ActivityDetailController',
         topNav: 'scripts/app/views/top-nav.html'
     });
-    $routeProvider.when('/builder/actions/:id', {
-        templateUrl: 'scripts/app/views/action.html',
-        controller: 'ActionDetailController',
+    $routeProvider.when('/builder/activities/:id', {
+        templateUrl: 'scripts/app/views/activity.html',
+        controller: 'ActivityDetailController',
         topNav: 'scripts/app/views/top-nav.html'
     });
 
