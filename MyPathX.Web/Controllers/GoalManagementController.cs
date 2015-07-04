@@ -15,14 +15,25 @@ namespace MyPathX.Web.Controllers
         {
         }
 
-        public ActionResult Add(AddGoalModel model)
+        //public ActionResult Add(AddGoalModel model)
+        //{
+        //    var command = MessageCreator.Create<CreateGoalMessage>();
+        //    command.Name = model.Name;
+        //    command.Description = model.Description;
+        //    Bus.Send("MyPathX.Services.GoalManagement", command);
+
+        //    return RedirectToAction("index", "home");
+        //}
+
+        public JsonResult Add(AddGoalModel model)
         {
             var command = MessageCreator.Create<CreateGoalMessage>();
             command.Name = model.Name;
             command.Description = model.Description;
+            command.Title = model.Title;
             Bus.Send("MyPathX.Services.GoalManagement", command);
 
-            return RedirectToAction("index", "home");
+            return Json("OK");
         }
     }
 }

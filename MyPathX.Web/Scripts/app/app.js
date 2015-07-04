@@ -1,0 +1,66 @@
+'use strict';
+
+angular.module('app', ['ngRoute', 'ngSanitize', 'GoalBuilder', 'ui.bootstrap', 'ngAnimate', 'ngMessages']).
+config(function ($routeProvider, $sceDelegateProvider) {
+    $routeProvider.when('/builder', {
+        redirectTo: '/builder/goals'
+    });
+
+    $routeProvider.when('/builder/goals', {
+        templateUrl: 'scripts/app/views/goals.html',
+        leftNav: 'scripts/app/views/left-nav-main.html',
+        topNav: 'scripts/app/views/top-nav.html',
+        controller: 'GoalListController'
+    });
+    $routeProvider.when('/builder/actions', {
+        templateUrl: 'scripts/app/views/actions.html',
+        leftNav: 'scripts/app/views/left-nav-main.html',
+        topNav: 'scripts/app/views/top-nav.html',
+        controller:'ActionsListController'
+});
+    $routeProvider.when('/builder/goals/new', {
+        templateUrl: 'scripts/app/views/goal.html',
+        leftNav: 'scripts/app/views/left-nav-actions.html',
+        topNav: 'scripts/app/views/top-nav.html',
+        controller: 'GoalDetailController',
+        resolve: {
+            selectedGoal: ['GoalBuilderService', function (GoalBuilderService) {
+                return GoalBuilderService.startBuilding();
+            }],
+        }
+    });
+    $routeProvider.when('/builder/goals/:id', {
+        templateUrl: 'scripts/app/views/goal.html',
+        leftNav: 'scripts/app/views/left-nav-actions.html',
+        controller: 'GoalDetailController',
+        topNav: 'scripts/app/views/top-nav.html',
+        resolve: {
+            selectedWorkout: ['GoalBuilderService', '$route', '$location', function (GoalBuilderService, $route, $location) {
+                var goal = GoalBuilderService.startBuilding($route.current.params.id);
+                if (!goal) {
+                    $location.path('/builder/goals');
+                }
+                return goal;
+            }],
+        }
+    });
+    $routeProvider.when('/builder/actions/new', {
+        templateUrl: 'scripts/app/views/action.html',
+        controller: 'ActionDetailController',
+        topNav: 'scripts/app/views/top-nav.html'
+    });
+    $routeProvider.when('/builder/actions/:id', {
+        templateUrl: 'scripts/app/views/action.html',
+        controller: 'ActionDetailController',
+        topNav: 'scripts/app/views/top-nav.html'
+    });
+
+
+    $routeProvider.otherwise({ redirectTo: '/builder' });
+
+    $sceDelegateProvider.resourceUrlWhitelist([
+      // Allow same origin resource loads.
+      'self']);
+});
+
+angular.module('GoalBuilder', []);

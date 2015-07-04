@@ -12,9 +12,9 @@ namespace MyPathX.Services.GoalManagement
             _repository = repository;
         }
 
-        public Goal Create(string name, string description)
+        public Goal Create(string name, string description, string title)
         {
-            var entity = new Goal(name, description);
+            var entity = new Goal(name, description, title);
 
             _repository.Add(entity);
 
@@ -24,6 +24,6 @@ namespace MyPathX.Services.GoalManagement
 
     public interface IGoalCreator
     {
-        Goal Create(string name, string description);
+        Goal Create(string name, string description, string title);
     }
 }

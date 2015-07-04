@@ -65,13 +65,23 @@ namespace MyPathX.Web.Tests
         }
 
         [Test]
+        public void AddSetsTitle()
+        {
+            var title = StringsForTest.RandomString();
+            var message = new CreateGoalMessage();
+            _messageCreatorMock.Setup(p => p.Create<CreateGoalMessage>()).Returns(message);
+            var addGoalModel = new AddGoalModel { Title = title };
+            _instanceUnderTest.Add(addGoalModel);
+
+            Assert.AreEqual(message.Title, title);
+        }
+
+        [Test]
         public void AddRedirectsToHome()
         {
             _messageCreatorMock.Setup(p => p.Create<CreateGoalMessage>()).Returns(new CreateGoalMessage());
-            var action = (RedirectToRouteResult)_instanceUnderTest.Add(new AddGoalModel { Name = StringsForTest.RandomString(), Description = StringsForTest.RandomString() });
-            Assert.IsAssignableFrom<RedirectToRouteResult>(action);
-            Assert.AreEqual("index", action.RouteValues["action"].ToString().ToLower());
-            Assert.AreEqual("home", action.RouteValues["controller"].ToString().ToLower());
+            var action = (JsonResult)_instanceUnderTest.Add(new AddGoalModel { Name = StringsForTest.RandomString(), Description = StringsForTest.RandomString() });
+            Assert.IsAssignableFrom<JsonResult>(action);
         }
     }
 }

@@ -1,0 +1,6 @@
+﻿<div id="left-nav-actions" ng-controller="ActionsNavController">
+    <h4>Actions</h4>
+    <div ng-repeat="action in actions|orderBy:'title'" class="row">
+        <button class="btn btn-info col-sm-12" ng-click="addAction(action)">{{action.title}}<span class="glyphicon glyphicon-chevron-right"></span></button>
+    </div>
+</div>

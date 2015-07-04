@@ -21,7 +21,7 @@ namespace MyPathX.Services.GoalManagement
 
         public void Handle(CreateGoalMessage message)
         {
-            _goalCreator.Create(message.Name, message.Description);
+            _goalCreator.Create(message.Name, message.Description, message.Title);
             _bus.Return(1);
         }
     }

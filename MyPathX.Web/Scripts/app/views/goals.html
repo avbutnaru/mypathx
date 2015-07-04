@@ -1,0 +1,6 @@
+﻿<div id="goals-list">
+    <h2>Goals</h2>
+    <div ng-repeat="goal in goals|orderBy:'title'" class="goal-tile" ng-dblclick="goto(goal)">
+        <div class="title">{{goal.title}}</div>
+    </div>
+</div>

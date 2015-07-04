@@ -20,19 +20,25 @@ namespace MyPathX.Services.GoalManagement.Tests
         [Test]
         public void CreateSetsName()
         {
-            VerifyPropertyIsSet(() => InstanceUnderTest.Create(StringsForTest.FixedString(), StringsForTest.RandomString()), p => p.Name, StringsForTest.FixedString());
+            VerifyPropertyIsSet(() => InstanceUnderTest.Create(StringsForTest.FixedString(), StringsForTest.RandomString(), StringsForTest.RandomString()), p => p.Name, StringsForTest.FixedString());
         }
 
         [Test]
         public void CreateSetsDescription()
         {
-            VerifyPropertyIsSet(() => InstanceUnderTest.Create(StringsForTest.RandomString(), StringsForTest.FixedString()), p => p.Description, StringsForTest.FixedString());
+            VerifyPropertyIsSet(() => InstanceUnderTest.Create(StringsForTest.RandomString(), StringsForTest.FixedString(), StringsForTest.RandomString()), p => p.Description, StringsForTest.FixedString());
+        }
+
+        [Test]
+        public void CreateSetsTitle()
+        {
+            VerifyPropertyIsSet(() => InstanceUnderTest.Create(StringsForTest.RandomString(), StringsForTest.RandomString(), StringsForTest.FixedString()), p => p.Title, StringsForTest.FixedString());
         }
 
         [Test]
         public void CreatePersistsEntity()
         {
-            var entity = InstanceUnderTest.Create(StringsForTest.RandomString(), StringsForTest.RandomString());
+            var entity = InstanceUnderTest.Create(StringsForTest.RandomString(), StringsForTest.RandomString(), StringsForTest.RandomString());
             _repositoryMock.Verify(p => p.Add(entity));
         }
     }

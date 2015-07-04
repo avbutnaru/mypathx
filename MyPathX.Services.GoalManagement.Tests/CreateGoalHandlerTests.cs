@@ -21,15 +21,16 @@ namespace MyPathX.Services.GoalManagement.Tests
         {
             var name = StringsForTest.RandomString();
             var description = StringsForTest.RandomString();
-            var entity = new Goal(StringsForTest.RandomString(), StringsForTest.RandomString());
+            var title = StringsForTest.RandomString();
+            var entity = new Goal(StringsForTest.RandomString(), StringsForTest.RandomString(), StringsForTest.RandomString());
 
             var goalCreator = new Mock<IGoalCreator>();
             var bus = new Mock<IBus>();
             var sut = new CreateGoalHandler(bus.Object, goalCreator.Object);
 
-            sut.Handle(new CreateGoalMessage { Name = name, Description = description });
+            sut.Handle(new CreateGoalMessage { Name = name, Description = description, Title = title });
 
-            goalCreator.Verify(p => p.Create(name, description));
+            goalCreator.Verify(p => p.Create(name, description, title));
         }
 
         [Test]

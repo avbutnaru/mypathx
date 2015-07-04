@@ -19,6 +19,21 @@ namespace MyPathX.Web
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include(
+                      "~/scripts/angular.js",
+                      "~/scripts/angular-route.js",
+                      "~/scripts/angular-sanitize.js",
+                      "~/scripts/angular-animate.js",
+                      "~/scripts/angular-messages.js",
+                      "~/scripts/ui-bootstrap-tpls-0.10.0.js"
+                      ));
+
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                      "~/scripts/app/app.js",
+                      "~/scripts/app/services/*.js",
+                      "~/scripts/app/model/*.js",
+                      "~/scripts/app/controllers/*.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
